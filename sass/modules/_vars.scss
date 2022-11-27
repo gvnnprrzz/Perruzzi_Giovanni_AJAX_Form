@@ -1,12 +1,14 @@
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
 
-$main-bg-color: #333;
-$main-color: white;
+$main-bg-color: #000;
+$main-color: #fff;
 
 $main-font-face: 'arial', 'helvetica', sans-serif;
 $main-font-size: 16px;
 
-$heading-color: rgba(255, 255, 255, 0.5);
+$heading-color: rgba(255, 255, 255, 255);
 
 // quick reset
 * {

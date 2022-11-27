@@ -9,20 +9,38 @@ body {
 main {
     padding: 20px;
 
-    h2 { 
+    h2 {
+        display: flex;
         text-transform: uppercase;
         color: $heading-color;
-        font-size: 1.5em;
+        font-size: 3.5em;
         margin-bottom: 0.8em;
+        justify-content: center;
     }
 
-    hr { 
-        width: 80%; 
-        border: 1px solid $heading-color; 
-        margin: 40px 0; 
+    .form-info {
+        display: flex;
+        justify-content: center;
+        font-size: 1.8em;
     }
 
-    p { max-width: 75%; }
+    #mail-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    hr {
+        width: 80%;
+        border: 1px solid $heading-color;
+        margin: 40px 185px;
+    }
+
+    p {
+        max-width: 75%;
+    }
 }
 
-.error { border: 4px solid red; }
+.error {
+    border: 4px solid red;
+}
