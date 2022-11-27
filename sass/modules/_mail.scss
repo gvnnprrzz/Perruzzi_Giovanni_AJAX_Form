@@ -1,7 +1,7 @@
-label { 
+label {
     display: block;
+    font-size: 1.1em;
     margin: 1.5em 0 0.3em;
-
     padding-left: 0.4em;
 
     &:first-of-type {
@@ -9,11 +9,18 @@ label {
     }
 }
 
-input[type=text], input[type=email], input[type=tel], textarea {
+input[type=text],
+input[type=email],
+input[type=tel],
+textarea {
     padding: 0.6em;
     color: #333;
-    border-radius: 4px;
-    width: 250px;
+    border-radius: 30px;
+    width: 270px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
 }
 
 input[type=submit] {
@@ -27,19 +34,24 @@ input[type=submit] {
     color: white;
     font-weight: bolder;
 
-    &:hover { background-color: #5588c8}
+    &:hover {
+        background-color: #5588c8
+    }
 }
 
 .wrapper {
     position: relative;
 
-    i { 
+    i {
         position: absolute;
-        top: 50%;
+        top: 73%;
         transform: translateY(-50%);
-        left: 60px;
+        left: 80px;
         font-size: 1.5em;
     }
 }
 
-textarea { resize: none; display: block; }
+textarea {
+    resize: none;
+    display: block;
+}
