@@ -22,8 +22,8 @@ async function SendMail(targetForm) {
 
     if (formFieldErrors) {
         throw new Error(JSON.stringify(mailStatus));
-    }    
-    
+    }
+
     return mailStatus;
 }
 
