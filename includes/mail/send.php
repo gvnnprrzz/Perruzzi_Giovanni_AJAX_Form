@@ -5,7 +5,7 @@ header("Content-Type: applicant/json; charset=UTF-8");
 
 
 if($_POST) {
-    $receipent = "This is where your email goes...";
+    $recipient = "perruzzi12@gmail.com";
     $subject = "Email from my portfolio site";
     $visitor_name = "";
     $visitor_email = "";
@@ -14,12 +14,12 @@ if($_POST) {
 
     //Cleans and stores first name in the $visitor_name variable
     if(isset($_POST['firstname'])&& !empty($_POST['firstname'])){
-        $visitor_name = filter_var($_POST['fistname'], FILTER_SANITIZE_STRING);
+        $visitor_name = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
     }else{
         array_push($fail, "firstname");
     }
 
-    //Cleans and apends last name in the $visitor_name variable
+    //Cleans and appends last name in the $visitor_name variable
     if(isset($POST['lastname'])&& !empty($POST['lastname'])){
             $visitor_name .= " ".filter_var($POST['lastname'], FILTER_SANITIZE_STRING);
     }else{
@@ -33,8 +33,8 @@ if($_POST) {
     }else{
         array_push($fail, "email");
     }
-    
-    //Cleanse message and stores in $message varible
+
+    //Cleanse message and stores in $message variable
     if(isset($POST['message']) && !empty($POST['message'])){
         $clean = filter_var($POST['message'],   FILTER_SANITIZE_STRING);
         $message = htmlspecialchars($clean);
@@ -42,16 +42,16 @@ if($_POST) {
         array_push($fail, "message");
     }
 
-    $headers = "From: i_am_awesom@awesome.com"."\r\n"."Reply-to: again@again.com"."\r\n"."X-Mailer: PHP/".phpversion();
+    $headers = "From:".$visitor_name."\r\n"."Reply-to:".$visitor_email."\r\n"."X-Mailer: PHP/".phpversion();
     if(count($fail)==0){
-        mail($receipent, $subject, $message, $headers);
-        $results['messages'] = sprintf("Thank you for contacting us, %s. We will respong within 24 hours. ", $visitor_name);
+        mail($recipient, $subject, $message, $headers);
+        $results['messages'] = sprintf("Thank you for contacting me, %s. I will respond ASAP. ", $visitor_name);
     }else{
-        header("HTTP/1.1 488 You did NOT fill out the form correctly");
+        header("HTTP/1.1 488 Please fill out the form properly");
         die(json_encode(['message' => $fail]));
     }
 }else{
-    $results['message'] = "Stop being so lazy and fill out the damn form.";
+    $results['message'] = "Please fill out all form elements. Thank you.";
 }
 
 echo json_encode($results);
