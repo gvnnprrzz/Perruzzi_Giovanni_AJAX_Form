@@ -1,6 +1,7 @@
-// vars and main styles
-@import "modules/_vars.scss";
-@import "modules/_main.scss";
+@import "./modules/_reset.scss";
+@import "./modules/_vars.scss";
+@import "./modules/_defaults.scss";
+@import "./modules/_main.scss";
 
 // components
 @import "modules/_mail.scss";

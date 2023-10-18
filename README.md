@@ -1,17 +1,35 @@
 # HW #3 - AUTHORING / WEB EMAIL VALIDATION
 
-I will extend the functionality to include PHP validation for each input element passed through the $POST array. Once the information validates, I will trigger the server to send an email. I will also include pass and fail messages back to the UI.
+This README outlines the details of the "Authoring / Web Email Validation" project, where we extend functionality to include PHP validation for each input element passed through the `$POST` array. Upon successful validation, the server will send an email, and we provide feedback messages to the user interface for pass and fail cases.
 
-## Installing and running app
+## Installation and Running
 
-Run the web app after cloning it into any directory with `cd`. You can also download the app by going to the repo, clicking the green button that says "Code," and clicking on "Download ZIP."
+To run the web app, follow these steps:
 
-## How to use Project
+Clone the repository to your local directory using the command:
 
-Open the web app in the browser and enjoy.
+    git clone <Perruzzi_Giovanni_AJAX_Form>
+
+Navigate to the project directory using the cd command:
+
+    cd Perruzzi_Giovanni_AJAX_Form
+
+Alternatively, you can download the app by visiting the repository, clicking the green "Code" button, and selecting "Download ZIP."
+
+## Usage
+
+1. Open the web app in your preferred web browser.
+
+2. Interact with the application, entering the necessary input data.
+
+3. The application will perform PHP validation on the input data.
+
+4. If validation is successful, the server will send an email.
+
+5. You will receive feedback messages on the user interface to inform you of the pass or fail status.
 
 ## License
 
-MIT
+This project is licensed under the MIT License.
 
 Enjoy!

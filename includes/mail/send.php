@@ -1,60 +1,56 @@
 <?php
-// Required Headers
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: applicant/json; charset=UTF-8");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+header('Content-Type: application/json; charset=UTF-8');
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 
-if($_POST) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recipient = "perruzzi12@gmail.com";
-    $subject = "Email from my portfolio site";
+    $subject = "Email from my *****";
     $visitor_name = "";
     $visitor_email = "";
     $message = "";
-    $fail = array();
+    $fail = [];
 
-    //Cleans and stores first name in the $visitor_name variable
-    if(isset($_POST['firstname'])&& !empty($_POST['firstname'])){
-        $visitor_name = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
-    }else{
+    // Sanitize and validate input fields.
+    if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+        $visitor_name = filter_var($_POST['firstname'], FILTER_SANITIZE_SPECIAL_CHARS);
+    } else {
         array_push($fail, "firstname");
     }
 
-    //Cleans and appends last name in the $visitor_name variable
-    if(isset($POST['lastname'])&& !empty($POST['lastname'])){
-            $visitor_name .= " ".filter_var($POST['lastname'], FILTER_SANITIZE_STRING);
-    }else{
-        array_push($fail,"lastname");
+    if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
+        $visitor_name .= ' ' . filter_var($_POST['lastname'], FILTER_SANITIZE_SPECIAL_CHARS);
+    } else {
+        array_push($fail, "lastname");
     }
 
-    //Cleans and stores email in the $visitor_name variable
-    if(isset($POST['email']) && !empty($POST['email'])){
-        $email = str_replace(array("\r", "\n", "%0a", "%0d"), "", $POST['email']);
-        $visitor_email = filter_var($email, FILTER_VALIDATE_EMAIL);
-    }else{
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        $visitor_email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    } else {
         array_push($fail, "email");
     }
 
-    //Cleanse message and stores in $message variable
-    if(isset($POST['message']) && !empty($POST['message'])){
-        $clean = filter_var($POST['message'],   FILTER_SANITIZE_STRING);
-        $message = htmlspecialchars($clean);
-    }else{
+    if (isset($_POST['message']) && !empty($_POST['message'])) {
+        $message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
+    } else {
         array_push($fail, "message");
     }
 
-    $headers = "From:".$visitor_name."\r\n"."Reply-to:".$visitor_email."\r\n"."X-Mailer: PHP/".phpversion();
-    if(count($fail)==0){
+    $headers = 'From: ' . $visitor_email . "\r\n" . 'Reply-to: ' . $visitor_email . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+    if (empty($fail)) {
         mail($recipient, $subject, $message, $headers);
-        $results['messages'] = sprintf("Thank you for contacting me, %s. I will respond ASAP. ", $visitor_name);
-    }else{
-        header("HTTP/1.1 488 Please fill out the form properly");
-        die(json_encode(['message' => $fail]));
+        $results['message'] = sprintf("Thank you for contacting us, %s. We will respond within 24 hours.", $visitor_name);
+    } else {
+        header("HTTP/1.1 400 Bad Request");
+        $errorResponse = ['error' => 'Form validation failed', 'errors' => $fail];
+        echo json_encode($errorResponse);
     }
-}else{
-    $results['message'] = "Please fill out all form elements. Thank you.";
+} else {
+    header("HTTP/1.1 400 Bad Request");
+    $results['message'] = "Please fill out the form correctly.";
+    echo json_encode($results);
 }
-
-echo json_encode($results);
-
-
-?>

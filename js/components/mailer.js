@@ -1,30 +1,28 @@
-// could wrap all of this in a class or an object and expand on the API to include all of the front-end API interactions (GET, PUT, POST for CMS etc)
-
-// SendMail would be just one member / property in that object
-
 async function SendMail(targetForm) {
-    // mail stuff goes here
-    let formData = new FormData(targetForm),
-        formFieldErrors = false;
+	let formData = new FormData(targetForm),
+		formFieldErrors = false;
 
-    let result = await fetch(`./includes/${targetForm.getAttribute("action")}`, {
-        method: targetForm.method,
-        body: formData,
-    }).then(response => {
-        if (response.status !== 200) {
-            formFieldErrors = true;
-        }
+	try {
+		let result = await fetch(`./${targetForm.getAttribute("action")}`, {
+			method: targetForm.method,
+			body: formData,
+		});
 
-        return response;
-    })
+		if (result.status !== 200) {
+			formFieldErrors = true;
+		}
 
-    let mailStatus = await result.json();
+		let mailStatus = await result.json();
 
-    if (formFieldErrors) {
-        throw new Error(JSON.stringify(mailStatus));
-    }
+		if (formFieldErrors) {
+			throw new Error(JSON.stringify(mailStatus));
+		}
 
-    return mailStatus;
+		return mailStatus;
+	} catch (error) {
+		console.error("An error occurred:", error);
+		throw error;
+	}
 }
 
 export { SendMail };
