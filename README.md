@@ -1,6 +1,6 @@
 # HW #3 - AUTHORING / WEB EMAIL VALIDATION
 
-This README outlines the details of the "Authoring / Web Email Validation" project, where we extend functionality to include PHP validation for each input element passed through the `$POST` array. Upon successful validation, the server will send an email, and we provide feedback messages to the user interface for pass and fail cases.
+In this project, I will extend functionality to include PHP validation for each input element passed through the `$POST` array. Upon successful validation, the server will send an email, and provide feedback messages to the user interface for pass and fail cases.
 
 ## Installation and Running
 
@@ -30,6 +30,6 @@ Alternatively, you can download the app by visiting the repository, clicking the
 
 ## License
 
-This project is licensed under the MIT License.
+The MIT License licenses this project.
 
 Enjoy!
