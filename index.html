@@ -4,6 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="In this project, I will extend functionality to include PHP validation for each input element passed through the `$POST` array. Upon successful validation, the server will send an email, and we provide feedback messages to the user interface for pass and fail cases.">
         <title>Giovanni's Contact Form</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -21,27 +23,29 @@
 
             <form action="includes/mail/send.php" method="POST" id="mail-form">
                 <label for="firstname">First Name</label>
-                <input ref="fname" type="text" id="firstname" name="firstname" required="required">
+                <input ref="fname" aria-label="First name" type="text" id="firstname" name="firstname"
+                    required="required">
 
                 <label for="lastname">Last Name</label>
-                <input ref="lname" type="text" id="lastname" name="lastname" required>
+                <input ref="lname" aria-label="Last name" type="text" id="lastname" name="lastname" required>
 
                 <label for="email">Email</label>
-                <input ref="email" type="email" id="email" name="email" required>
+                <input ref="email" aria-label="Email" type="email" id="email" name="email" required>
 
                 <label for="message">Your Message</label>
-                <textarea ref="message" name="message" id="message" cols="30" rows="10"></textarea>
+                <textarea ref="message" aria-label="Your message" name="message" id="message" cols="30"
+                    rows="10"></textarea>
 
                 <label for="phone">Your Phone # <i>(optional)</i></label>
-                <input ref="phone" type="tel" value="tel" name="phone">
+                <input ref="phone" aria-label="Your phone number" type="tel" value="tel" name="phone">
 
                 <div class="wrapper display">
                     <input @click.prevent="processMail" type="submit" class="submit" value="Send!">
                     <i class="fas fa-paper-plane"></i>
                 </div>
             </form>
-            <span class="error hidden">Please review your credentials and try again.</span>
-            <span class="success hidden">Thank you for reaching out to me. I will respond ASAP.</span>
+            <span class="success-message success">Thank you for reaching out to me. I will respond ASAP.</span>
+            <span class="error-message error">Please review your credentials and try again.</span>
         </main>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="js/main.js" type="module" defer></script>

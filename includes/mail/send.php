@@ -7,12 +7,13 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $recipient = "perruzzi12@gmail.com";
+    $recipient = "";
     $subject = "Email from my *****";
     $visitor_name = "";
     $visitor_email = "";
     $message = "";
     $fail = [];
+    $results = []; // Create an array to hold response data
 
     // Sanitize and validate input fields.
     if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
@@ -44,13 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($fail)) {
         mail($recipient, $subject, $message, $headers);
         $results['message'] = sprintf("Thank you for contacting us, %s. We will respond within 24 hours.", $visitor_name);
+        echo json_encode($results); // Output the JSON response
     } else {
         header("HTTP/1.1 400 Bad Request");
         $errorResponse = ['error' => 'Form validation failed', 'errors' => $fail];
-        echo json_encode($errorResponse);
+        echo json_encode($errorResponse); // Output the JSON error response
     }
 } else {
     header("HTTP/1.1 400 Bad Request");
     $results['message'] = "Please fill out the form correctly.";
-    echo json_encode($results);
+    echo json_encode($results); // Output the JSON response
 }

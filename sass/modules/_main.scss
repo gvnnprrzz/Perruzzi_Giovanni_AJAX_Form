@@ -12,18 +12,20 @@ body {
 main {
 	background-color: #fff;
 	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 20px;
 	width: 400px;
+	text-align: center;
 
 	h2 {
 		font-size: 24px;
 		margin: 0 0 10px;
+		color: #333;
 	}
 
 	.form-info {
 		font-size: 16px;
-		color: #888;
+		margin-bottom: 20px;
 	}
 
 	#mail-form {
@@ -41,13 +43,31 @@ main {
 
 	p {
 		max-width: 75%;
+		color: #555;
+		margin: 0 auto;
 	}
 }
 
-.error,
+.success-message,
+.error-message {
+    display: none;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
 .success {
-	font-size: 14px;
-	color: #ff5733;
-	display: none;
-	margin-top: 10px;
+    border-color: #4CAF50;
+    color: #4CAF50;
+}
+
+.error {
+    border-color: #f44336;
+    color: #f44336;
+}
+
+.show {
+    display: block;
 }
